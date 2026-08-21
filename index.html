@@ -1,656 +1,2070 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <link rel="stylesheet" href="style.css">
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="قالب قانوني عربي احترافي لإدارة القضايا والمعاملات">
-  <title>الموثق القانوني | Legal Arabic Template</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#111827">
+<title>الموثق القانوني | لوحة التحكم</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+<style>
+*{
+  box-sizing:border-box;
+}
 
-    body {
-      font-family: Arial, Tahoma, sans-serif;
-      background: #f5f6f8;
-      color: #1f2937;
-      line-height: 1.8;
-    }
+:root{
+  --bg:#0b1020;
+  --panel:#111827;
+  --panel2:#172033;
+  --border:#273449;
+  --text:#f8fafc;
+  --muted:#94a3b8;
+  --gold:#d6a85f;
+  --gold2:#f0c982;
+  --blue:#2563eb;
+  --green:#16a34a;
+  --red:#dc2626;
+  --orange:#ea580c;
+  --shadow:0 15px 40px rgba(0,0,0,.25);
+}
 
-    header {
-      background: #111827;
-      color: white;
-      padding: 20px;
-    }
+html{
+  scroll-behavior:smooth;
+}
 
-    .container {
-      width: 90%;
-      max-width: 1200px;
-      margin: auto;
-    }
+body{
+  margin:0;
+  background:
+    radial-gradient(circle at top right,rgba(214,168,95,.08),transparent 30%),
+    var(--bg);
+  color:var(--text);
+  font-family:Arial,Tahoma,sans-serif;
+  min-height:100vh;
+}
 
-    nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 20px;
-    }
+button,
+input,
+select,
+textarea{
+  font:inherit;
+}
 
-    .logo {
-      font-size: 24px;
-      font-weight: bold;
-    }
+button{
+  cursor:pointer;
+}
 
-    .hero {
-      padding: 80px 20px;
-      text-align: center;
-      background: white;
-    }
+.topbar{
+  position:sticky;
+  top:0;
+  z-index:50;
+  background:rgba(11,16,32,.95);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+}
 
-    .hero h1 {
-      font-size: 42px;
-      margin-bottom: 15px;
-      color: #111827;
-    }
+.topbar-inner{
+  max-width:1400px;
+  margin:auto;
+  padding:14px 18px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+}
 
-    .hero p {
-      font-size: 19px;
-      color: #6b7280;
-      max-width: 700px;
-      margin: auto;
-    }
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
 
-    .buttons {
-      margin-top: 30px;
-    }
+.logo{
+  width:46px;
+  height:46px;
+  border-radius:14px;
+  display:grid;
+  place-items:center;
+  background:linear-gradient(135deg,#3b2a13,#d6a85f);
+  color:#111827;
+  font-size:23px;
+  font-weight:900;
+}
 
-    .btn {
-      display: inline-block;
-      padding: 12px 25px;
-      margin: 5px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: bold;
-    }
+.brand h1{
+  margin:0;
+  font-size:20px;
+}
 
-    .btn-primary {
-      background: #b8860b;
-      color: white;
-    }
+.brand small{
+  display:block;
+  color:var(--muted);
+  margin-top:4px;
+}
 
-    .btn-secondary {
-      border: 1px solid #d1d5db;
-      color: #111827;
-    }
+.top-actions{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+}
 
-    .features {
-      padding: 60px 20px;
-    }
+.container{
+  max-width:1400px;
+  margin:auto;
+  padding:22px 18px 50px;
+}
 
-    .features h2 {
-      text-align: center;
-      margin-bottom: 35px;
-      font-size: 32px;
-    }
+.hero{
+  background:
+    linear-gradient(135deg,rgba(214,168,95,.14),rgba(37,99,235,.06)),
+    var(--panel);
+  border:1px solid var(--border);
+  border-radius:24px;
+  padding:30px;
+  box-shadow:var(--shadow);
+  margin-bottom:20px;
+}
 
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 25px;
-    }
+.hero h2{
+  margin:0 0 8px;
+  font-size:30px;
+}
 
-    .card {
-      background: white;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.06);
-    }
+.hero p{
+  margin:0;
+  color:var(--muted);
+  line-height:1.8;
+}
 
-    .card h3 {
-      margin-bottom: 10px;
-      color: #111827;
-    }
+.nav{
+  display:flex;
+  gap:8px;
+  overflow-x:auto;
+  padding:5px 0 15px;
+  margin-bottom:8px;
+}
 
-    .card p {
-      color: #6b7280;
-    }
+.nav button{
+  white-space:nowrap;
+  border:1px solid var(--border);
+  background:var(--panel);
+  color:var(--muted);
+  border-radius:12px;
+  padding:11px 15px;
+}
 
-    footer {
-      background: #111827;
-      color: white;
-      text-align: center;
-      padding: 25px;
-      margin-top: 40px;
-    }
+.nav button:hover{
+  border-color:var(--gold);
+  color:var(--text);
+}
 
-    @media (max-width: 768px) {
-      .cards {
-        grid-template-columns: 1fr;
-      }
+.nav button.active{
+  background:linear-gradient(135deg,#3b2a13,#7b5b2b);
+  border-color:var(--gold);
+  color:#fff;
+}
 
-      .hero h1 {
-        font-size: 32px;
-      }
+.panel{
+  display:none;
+}
 
-      nav {
-        flex-direction: column;
-      }
-    }
-  </style>
+.panel.active{
+  display:block;
+}
+
+.cards{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:15px;
+  margin-bottom:20px;
+}
+
+.card{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:20px;
+  box-shadow:var(--shadow);
+}
+
+.stat-card{
+  min-height:125px;
+}
+
+.stat-label{
+  color:var(--muted);
+  font-size:14px;
+}
+
+.stat-value{
+  margin-top:12px;
+  font-size:28px;
+  font-weight:900;
+}
+
+.gold{
+  color:var(--gold2);
+}
+
+.green{
+  color:#4ade80;
+}
+
+.red{
+  color:#f87171;
+}
+
+.blue{
+  color:#60a5fa;
+}
+
+.toolbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  flex-wrap:wrap;
+  margin-bottom:18px;
+}
+
+.toolbar h2{
+  margin:0;
+  font-size:22px;
+}
+
+.actions{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+}
+
+.btn{
+  border:0;
+  border-radius:11px;
+  padding:11px 15px;
+  color:white;
+  background:#334155;
+}
+
+.btn:hover{
+  filter:brightness(1.1);
+}
+
+.btn-primary{
+  background:linear-gradient(135deg,#2563eb,#1d4ed8);
+}
+
+.btn-gold{
+  background:linear-gradient(135deg,#8b641f,#d6a85f);
+  color:#111827;
+  font-weight:800;
+}
+
+.btn-success{
+  background:var(--green);
+}
+
+.btn-danger{
+  background:var(--red);
+}
+
+.btn-warning{
+  background:var(--orange);
+}
+
+.btn-light{
+  background:#e5e7eb;
+  color:#111827;
+}
+
+.search{
+  margin-bottom:15px;
+}
+
+.search input{
+  width:100%;
+  background:#0b1220;
+  border:1px solid var(--border);
+  color:white;
+  padding:13px 15px;
+  border-radius:12px;
+  outline:none;
+}
+
+.search input:focus,
+.field input:focus,
+.field select:focus,
+.field textarea:focus{
+  border-color:var(--gold);
+  box-shadow:0 0 0 3px rgba(214,168,95,.1);
+}
+
+.table-wrap{
+  overflow-x:auto;
+  border:1px solid var(--border);
+  border-radius:14px;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  min-width:720px;
+}
+
+th,
+td{
+  padding:13px 10px;
+  border-bottom:1px solid var(--border);
+  text-align:right;
+}
+
+th{
+  color:var(--gold2);
+  background:#0d1525;
+  font-size:13px;
+}
+
+td{
+  color:#e2e8f0;
+}
+
+tr:last-child td{
+  border-bottom:0;
+}
+
+.empty{
+  text-align:center;
+  padding:35px 15px;
+  color:var(--muted);
+}
+
+.badge{
+  display:inline-block;
+  padding:5px 9px;
+  border-radius:999px;
+  font-size:12px;
+  font-weight:800;
+}
+
+.badge-blue{
+  background:rgba(37,99,235,.18);
+  color:#93c5fd;
+}
+
+.badge-green{
+  background:rgba(22,163,74,.18);
+  color:#86efac;
+}
+
+.badge-red{
+  background:rgba(220,38,38,.18);
+  color:#fca5a5;
+}
+
+.badge-gold{
+  background:rgba(214,168,95,.18);
+  color:var(--gold2);
+}
+
+.form-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:15px;
+}
+
+.field{
+  display:flex;
+  flex-direction:column;
+  gap:7px;
+}
+
+.field.full{
+  grid-column:1/-1;
+}
+
+.field label{
+  color:#cbd5e1;
+  font-size:14px;
+}
+
+.field input,
+.field select,
+.field textarea{
+  width:100%;
+  background:#0b1220;
+  border:1px solid var(--border);
+  color:white;
+  border-radius:11px;
+  padding:12px;
+  outline:none;
+}
+
+.field textarea{
+  min-height:100px;
+  resize:vertical;
+}
+
+.form-actions{
+  grid-column:1/-1;
+  display:flex;
+  justify-content:flex-start;
+  gap:8px;
+  margin-top:5px;
+}
+
+.quick-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
+}
+
+.quick{
+  border:1px solid var(--border);
+  background:var(--panel);
+  border-radius:18px;
+  padding:22px;
+  text-align:center;
+  transition:.2s;
+}
+
+.quick:hover{
+  transform:translateY(-3px);
+  border-color:var(--gold);
+}
+
+.quick-icon{
+  font-size:35px;
+  margin-bottom:10px;
+}
+
+.quick h3{
+  margin:5px 0;
+}
+
+.quick p{
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.7;
+}
+
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.75);
+  z-index:100;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:18px;
+}
+
+.modal.show{
+  display:flex;
+}
+
+.modal-box{
+  width:min(700px,100%);
+  max-height:92vh;
+  overflow:auto;
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:20px;
+  box-shadow:var(--shadow);
+}
+
+.modal-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:18px;
+  border-bottom:1px solid var(--border);
+}
+
+.modal-head h3{
+  margin:0;
+}
+
+.modal-body{
+  padding:18px;
+}
+
+.close{
+  width:38px;
+  height:38px;
+  border-radius:10px;
+  border:1px solid var(--border);
+  background:#1e293b;
+  color:white;
+  font-size:22px;
+}
+
+.notice{
+  background:rgba(214,168,95,.1);
+  border:1px solid rgba(214,168,95,.3);
+  color:#fde7bd;
+  border-radius:14px;
+  padding:14px;
+  line-height:1.8;
+  margin-bottom:15px;
+}
+
+.footer{
+  text-align:center;
+  color:var(--muted);
+  padding:30px 10px;
+  font-size:13px;
+}
+
+@media(max-width:900px){
+  .cards{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .quick-grid{
+    grid-template-columns:1fr 1fr;
+  }
+}
+
+@media(max-width:600px){
+  .topbar-inner{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+
+  .hero{
+    padding:22px;
+  }
+
+  .hero h2{
+    font-size:24px;
+  }
+
+  .cards{
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+  }
+
+  .card{
+    padding:15px;
+  }
+
+  .stat-value{
+    font-size:22px;
+  }
+
+  .form-grid{
+    grid-template-columns:1fr;
+  }
+
+  .field.full,
+  .form-actions{
+    grid-column:auto;
+  }
+
+  .quick-grid{
+    grid-template-columns:1fr;
+  }
+}
+
+@media print{
+  body{
+    background:white;
+    color:black;
+  }
+
+  .topbar,
+  .nav,
+  .actions,
+  .search,
+  .footer,
+  .no-print{
+    display:none!important;
+  }
+
+  .container{
+    max-width:none;
+    padding:0;
+  }
+
+  .panel{
+    display:none!important;
+  }
+
+  .panel.active{
+    display:block!important;
+  }
+
+  .card,
+  .hero{
+    box-shadow:none;
+    border:1px solid #ddd;
+    color:black;
+  }
+
+  th,
+  td{
+    color:black;
+    border-color:#ddd;
+  }
+}
+</style>
 </head>
 
 <body>
 
-  <header>
-    <div class="container">
-      <nav>
-        <div class="logo">⚖️ الموثق القانوني</div>
-        <div>حلول قانونية رقمية عربية</div>
-      </nav>
+<header class="topbar">
+  <div class="topbar-inner">
+
+    <div class="brand">
+      <div class="logo">⚖</div>
+      <div>
+        <h1>لوحة التحكم</h1>
+        <small>نظام إدارة المكتب القانوني</small>
+      </div>
     </div>
-  </header>
 
-  <main>
+    <div class="top-actions no-print">
+      <button class="btn btn-gold" id="backupBtn">💾 نسخة احتياطية</button>
+      <button class="btn" id="printBtn">🖨️ طباعة</button>
+    </div>
 
-    <section class="hero">
-      <div class="container">
-        <h1>إدارة قانونية احترافية</h1>
+  </div>
+</header>
 
-        <p>
-          قالب عربي حديث يساعد الشركات والمكاتب القانونية
-          على تنظيم القضايا والمعاملات والوثائق بطريقة احترافية.
-        </p>
+<main class="container">
 
-        <div class="buttons">
-          <a href="#" class="btn btn-primary">ابدأ الآن</a>
-          <a href="#" class="btn btn-secondary">اكتشف المميزات</a>
-        </div>
+<section class="hero">
+  <h2>مرحباً بك في الموثق القانوني ⚖️</h2>
+  <p>
+    إدارة القضايا والمذكرات والمواعيد والوثائق والمحامين من مكان واحد.
+    جميع البيانات تُحفظ محلياً في هذا المتصفح.
+  </p>
+</section>
+
+<nav class="nav no-print">
+
+  <button class="active" data-tab="dashboard">🏠 الرئيسية</button>
+
+  <button data-tab="cases">⚖️ إدارة القضايا</button>
+
+  <button data-tab="memos">📑 المذكرات القانونية</button>
+
+  <button data-tab="appointments">📅 المواعيد</button>
+
+  <button data-tab="documents">📁 الوثائق</button>
+
+  <button data-tab="lawyers">👨‍⚖️ المحامون</button>
+
+</nav>
+
+<!-- ================= الرئيسية ================= -->
+
+<section id="dashboard" class="panel active">
+
+  <div class="cards">
+
+    <div class="card stat-card">
+      <div class="stat-label">إجمالي القضايا</div>
+      <div class="stat-value gold" id="statCases">0</div>
+    </div>
+
+    <div class="card stat-card">
+      <div class="stat-label">القضايا المفتوحة</div>
+      <div class="stat-value blue" id="statOpen">0</div>
+    </div>
+
+    <div class="card stat-card">
+      <div class="stat-label">المواعيد القادمة</div>
+      <div class="stat-value green" id="statAppointments">0</div>
+    </div>
+
+    <div class="card stat-card">
+      <div class="stat-label">عدد الوثائق</div>
+      <div class="stat-value gold" id="statDocuments">0</div>
+    </div>
+
+  </div>
+
+  <div class="card">
+    <div class="toolbar">
+      <h2>الوصول السريع</h2>
+    </div>
+
+    <div class="quick-grid">
+
+      <div class="quick" data-quick="cases">
+        <div class="quick-icon">⚖️</div>
+        <h3>إدارة القضايا</h3>
+        <p>إضافة القضايا ومتابعة حالتها وبياناتها.</p>
+        <button class="btn btn-primary">فتح القسم</button>
       </div>
-    </section>
 
-    <section class="features">
-      <div class="container">
-        <h2>مميزات النظام</h2>
-
-        <div class="cards">
-
-          <div class="card">
-            <h3>📁 إدارة القضايا</h3>
-            <p>
-              تنظيم القضايا والملفات القانونية ومتابعة حالتها بسهولة.
-            </p>
-          </div>
-
-          <div class="card">
-            <h3>📋 تتبع المعاملات</h3>
-            <p>
-              متابعة جميع المعاملات وتواريخها وحالاتها من مكان واحد.
-            </p>
-          </div>
-
-          <div class="card">
-            <h3>🔐 نظام آمن</h3>
-            <p>
-              تصميم قابل للتطوير مع التركيز على حماية بيانات المستخدمين.
-            </p>
-          </div>
-
-        </div>
+      <div class="quick" data-quick="memos">
+        <div class="quick-icon">📑</div>
+        <h3>المذكرات القانونية</h3>
+        <p>حفظ المذكرات والملاحظات القانونية والرجوع إليها.</p>
+        <button class="btn btn-primary">فتح القسم</button>
       </div>
-    </section>
 
-  </main>
-
-  <footer>
-    <p>© 2026 الموثق القانوني — جميع الحقوق محفوظة</p>
-  </footer>
-<style>
-/* ===== لوحة التحكم ===== */
-.app-dashboard {
-    display: none;
-    padding: 70px 20px 90px;
-    background: #0f172a;
-}
-
-.app-dashboard.active {
-    display: block;
-}
-
-.dashboard-container {
-    max-width: 1000px;
-    margin: auto;
-}
-
-.dashboard-title {
-    text-align: center;
-    color: #f8fafc;
-    font-size: clamp(30px, 6vw, 48px);
-    margin-bottom: 12px;
-}
-
-.dashboard-subtitle {
-    text-align: center;
-    color: #94a3b8;
-    font-size: 18px;
-    margin-bottom: 45px;
-}
-
-.dashboard-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 22px;
-}
-
-.dashboard-card {
-    background: #111827;
-    border: 1px solid #334155;
-    border-radius: 18px;
-    padding: 30px 24px;
-    text-align: center;
-    transition: .25s ease;
-}
-
-.dashboard-card:hover {
-    transform: translateY(-5px);
-    border-color: #2563eb;
-}
-
-.dashboard-icon {
-    font-size: 42px;
-    margin-bottom: 15px;
-}
-
-.dashboard-card h3 {
-    color: #f8fafc;
-    font-size: 24px;
-    margin-bottom: 12px;
-}
-
-.dashboard-card p {
-    color: #94a3b8;
-    line-height: 1.8;
-    font-size: 16px;
-}
-
-.dashboard-btn {
-    margin-top: 18px;
-    border: 0;
-    border-radius: 10px;
-    padding: 12px 22px;
-    background: #2563eb;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-.dashboard-btn:hover {
-    background: #1d4ed8;
-}
-
-.back-home {
-    display: block;
-    margin: 40px auto 0;
-    padding: 13px 28px;
-    border-radius: 10px;
-    border: 1px solid #475569;
-    background: transparent;
-    color: #f8fafc;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-/* ===== نافذة التنبيه ===== */
-.legal-message {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,.75);
-    display: none;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    z-index: 9999;
-}
-
-.legal-message.active {
-    display: flex;
-}
-
-.legal-box {
-    width: 100%;
-    max-width: 450px;
-    background: #111827;
-    border: 1px solid #334155;
-    border-radius: 18px;
-    padding: 30px;
-    text-align: center;
-    color: white;
-}
-
-.legal-box h3 {
-    color: #f8fafc;
-    font-size: 25px;
-    margin-bottom: 15px;
-}
-
-.legal-box p {
-    color: #94a3b8;
-    line-height: 1.8;
-}
-
-.close-message {
-    margin-top: 20px;
-    background: #2563eb;
-    color: white;
-    border: 0;
-    border-radius: 10px;
-    padding: 12px 28px;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-/* ===== الهاتف ===== */
-@media (max-width: 700px) {
-    .dashboard-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .app-dashboard {
-        padding-top: 55px;
-    }
-
-    .dashboard-card {
-        padding: 28px 20px;
-    }
-}
-</style>
-
-
-<!-- ===== لوحة التحكم الجديدة ===== -->
-<section id="appDashboard" class="app-dashboard">
-
-    <div class="dashboard-container">
-
-        <h2 class="dashboard-title">
-            لوحة التحكم ⚖️
-        </h2>
-
-        <p class="dashboard-subtitle">
-            مرحباً بك في الموثق القانوني
-        </p>
-
-        <div class="dashboard-grid">
-
-            <div class="dashboard-card">
-                <div class="dashboard-icon">📁</div>
-
-                <h3>إدارة القضايا</h3>
-
-                <p>
-                    تنظيم القضايا والملفات القانونية
-                    ومتابعة حالتها بسهولة.
-                </p>
-
-                <button class="dashboard-btn"
-                        onclick="showLegalMessage('إدارة القضايا')">
-                    فتح القسم
-                </button>
-            </div>
-
-
-            <div class="dashboard-card">
-                <div class="dashboard-icon">📋</div>
-
-                <h3>تتبع المعاملات</h3>
-
-                <p>
-                    متابعة المعاملات وتواريخها
-                    وحالاتها من مكان واحد.
-                </p>
-
-                <button class="dashboard-btn"
-                        onclick="showLegalMessage('تتبع المعاملات')">
-                    فتح القسم
-                </button>
-            </div>
-
-
-            <div class="dashboard-card">
-                <div class="dashboard-icon">🔐</div>
-
-                <h3>الأمان والبيانات</h3>
-
-                <p>
-                    نظام قابل للتطوير مع التركيز
-                    على حماية بيانات المستخدمين.
-                </p>
-
-                <button class="dashboard-btn"
-                        onclick="showLegalMessage('الأمان والبيانات')">
-                    فتح القسم
-                </button>
-            </div>
-
-        </div>
-
-        <button class="back-home" id="backHome">
-            ← العودة إلى الصفحة الرئيسية
-        </button>
+      <div class="quick" data-quick="appointments">
+        <div class="quick-icon">📅</div>
+        <h3>المواعيد</h3>
+        <p>تنظيم جلسات ومواعيد المكتب.</p>
+        <button class="btn btn-primary">فتح القسم</button>
+      </div>
 
     </div>
+  </div>
+
+  <div class="card" style="margin-top:20px">
+    <div class="toolbar">
+      <h2>آخر القضايا</h2>
+      <button class="btn btn-gold no-print" data-open-add="case">+ قضية جديدة</button>
+    </div>
+
+    <div id="dashboardCases"></div>
+  </div>
 
 </section>
 
+<!-- ================= القضايا ================= -->
 
-<!-- ===== نافذة الرسالة ===== -->
-<div id="legalMessage" class="legal-message">
+<section id="cases" class="panel">
 
-    <div class="legal-box">
+  <div class="card">
 
-        <h3 id="messageTitle">
-            الموثق القانوني
-        </h3>
+    <div class="toolbar">
+      <h2>⚖️ إدارة القضايا</h2>
 
-        <p id="messageText">
-            هذا القسم جاهز للمرحلة القادمة.
-        </p>
-
-        <button class="close-message" id="closeMessage">
-            حسناً
-        </button>
-
+      <div class="actions no-print">
+        <button class="btn btn-gold" data-open-add="case">+ إضافة قضية</button>
+        <button class="btn" data-print-section="cases">🖨️ طباعة</button>
+      </div>
     </div>
 
+    <div class="notice">
+      من هنا يمكنك تسجيل القضايا ومتابعة رقم القضية والموكل والمحكمة والحالة والملاحظات.
+    </div>
+
+    <div class="search no-print">
+      <input id="caseSearch" placeholder="🔎 ابحث برقم القضية أو اسم الموكل أو المحكمة...">
+    </div>
+
+    <div id="casesTable"></div>
+
+  </div>
+
+</section>
+
+<!-- ================= المذكرات ================= -->
+
+<section id="memos" class="panel">
+
+  <div class="card">
+
+    <div class="toolbar">
+      <h2>📑 المذكرات القانونية</h2>
+
+      <div class="actions no-print">
+        <button class="btn btn-gold" data-open-add="memo">+ إضافة مذكرة</button>
+        <button class="btn" data-print-section="memos">🖨️ طباعة</button>
+      </div>
+    </div>
+
+    <div class="search no-print">
+      <input id="memoSearch" placeholder="🔎 ابحث في المذكرات...">
+    </div>
+
+    <div id="memosTable"></div>
+
+  </div>
+
+</section>
+
+<!-- ================= المواعيد ================= -->
+
+<section id="appointments" class="panel">
+
+  <div class="card">
+
+    <div class="toolbar">
+      <h2>📅 المواعيد والجلسات</h2>
+
+      <div class="actions no-print">
+        <button class="btn btn-gold" data-open-add="appointment">+ إضافة موعد</button>
+        <button class="btn" data-print-section="appointments">🖨️ طباعة</button>
+      </div>
+    </div>
+
+    <div class="search no-print">
+      <input id="appointmentSearch" placeholder="🔎 ابحث عن موعد أو قضية أو محكمة...">
+    </div>
+
+    <div id="appointmentsTable"></div>
+
+  </div>
+
+</section>
+
+<!-- ================= الوثائق ================= -->
+
+<section id="documents" class="panel">
+
+  <div class="card">
+
+    <div class="toolbar">
+      <h2>📁 الوثائق</h2>
+
+      <div class="actions no-print">
+        <button class="btn btn-gold" data-open-add="document">+ إضافة وثيقة</button>
+        <button class="btn" data-print-section="documents">🖨️ طباعة</button>
+      </div>
+    </div>
+
+    <div class="notice">
+      هذا القسم يسجل معلومات الوثائق. يتم حفظ اسم الوثيقة ووصفها وارتباطها بالقضية.
+      رفع الملفات الفعلية يحتاج إلى خدمة تخزين منفصلة.
+    </div>
+
+    <div class="search no-print">
+      <input id="documentSearch" placeholder="🔎 ابحث عن وثيقة...">
+    </div>
+
+    <div id="documentsTable"></div>
+
+  </div>
+
+</section>
+
+<!-- ================= المحامون ================= -->
+
+<section id="lawyers" class="panel">
+
+  <div class="card">
+
+    <div class="toolbar">
+      <h2>👨‍⚖️ المحامون</h2>
+
+      <div class="actions no-print">
+        <button class="btn btn-gold" data-open-add="lawyer">+ إضافة محامٍ</button>
+        <button class="btn" data-print-section="lawyers">🖨️ طباعة</button>
+      </div>
+    </div>
+
+    <div class="search no-print">
+      <input id="lawyerSearch" placeholder="🔎 ابحث عن محامٍ أو تخصص...">
+    </div>
+
+    <div id="lawyersTable"></div>
+
+  </div>
+
+</section>
+
+<div class="footer">
+  الموثق القانوني © 2026 — نظام إدارة محلي
 </div>
 
+</main>
+
+<!-- ================= نافذة الإضافة ================= -->
+
+<div class="modal" id="modal">
+
+  <div class="modal-box">
+
+    <div class="modal-head">
+      <h3 id="modalTitle">إضافة</h3>
+      <button class="close" id="closeModal">×</button>
+    </div>
+
+    <div class="modal-body">
+
+      <!-- قضية -->
+
+      <form id="caseForm" class="form-grid" hidden>
+
+        <div class="field">
+          <label>رقم القضية</label>
+          <input id="caseNumber" required>
+        </div>
+
+        <div class="field">
+          <label>اسم الموكل</label>
+          <input id="caseClient" required>
+        </div>
+
+        <div class="field">
+          <label>المحكمة</label>
+          <input id="caseCourt">
+        </div>
+
+        <div class="field">
+          <label>نوع القضية</label>
+          <select id="caseType">
+            <option>مدنية</option>
+            <option>تجارية</option>
+            <option>جزائية</option>
+            <option>أحوال شخصية</option>
+            <option>إدارية</option>
+            <option>عمالية</option>
+            <option>أخرى</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>حالة القضية</label>
+          <select id="caseStatus">
+            <option>مفتوحة</option>
+            <option>قيد المتابعة</option>
+            <option>مؤجلة</option>
+            <option>مغلقة</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>تاريخ فتح القضية</label>
+          <input id="caseDate" type="date">
+        </div>
+
+        <div class="field full">
+          <label>ملاحظات</label>
+          <textarea id="caseNotes"></textarea>
+        </div>
+
+        <div class="form-actions">
+          <button class="btn btn-gold" type="submit">حفظ القضية</button>
+          <button class="btn" type="button" data-close-modal>إلغاء</button>
+        </div>
+
+      </form>
+
+      <!-- مذكرة -->
+
+      <form id="memoForm" class="form-grid" hidden>
+
+        <div class="field">
+          <label>عنوان المذكرة</label>
+          <input id="memoTitle" required>
+        </div>
+
+        <div class="field">
+          <label>رقم القضية</label>
+          <input id="memoCase">
+        </div>
+
+        <div class="field">
+          <label>التاريخ</label>
+          <input id="memoDate" type="date">
+        </div>
+
+        <div class="field">
+          <label>نوع المذكرة</label>
+          <select id="memoType">
+            <option>مذكرة دفاع</option>
+            <option>مذكرة قانونية</option>
+            <option>طلب</option>
+            <option>مرافعة</option>
+            <option>ملاحظة داخلية</option>
+            <option>أخرى</option>
+          </select>
+        </div>
+
+        <div class="field full">
+          <label>المحتوى / الملاحظات</label>
+          <textarea id="memoContent" required></textarea>
+        </div>
+
+        <div class="form-actions">
+          <button class="btn btn-gold" type="submit">حفظ المذكرة</button>
+          <button class="btn" type="button" data-close-modal>إلغاء</button>
+        </div>
+
+      </form>
+
+      <!-- موعد -->
+
+      <form id="appointmentForm" class="form-grid" hidden>
+
+        <div class="field">
+          <label>عنوان الموعد</label>
+          <input id="appointmentTitle" required>
+        </div>
+
+        <div class="field">
+          <label>رقم القضية</label>
+          <input id="appointmentCase">
+        </div>
+
+        <div class="field">
+          <label>التاريخ</label>
+          <input id="appointmentDate" type="date" required>
+        </div>
+
+        <div class="field">
+          <label>الوقت</label>
+          <input id="appointmentTime" type="time">
+        </div>
+
+        <div class="field">
+          <label>المكان / المحكمة</label>
+          <input id="appointmentPlace">
+        </div>
+
+        <div class="field">
+          <label>الحالة</label>
+          <select id="appointmentStatus">
+            <option>قادم</option>
+            <option>تم</option>
+            <option>مؤجل</option>
+            <option>ملغى</option>
+          </select>
+        </div>
+
+        <div class="field full">
+          <label>ملاحظات</label>
+          <textarea id="appointmentNotes"></textarea>
+        </div>
+
+        <div class="form-actions">
+          <button class="btn btn-gold" type="submit">حفظ الموعد</button>
+          <button class="btn" type="button" data-close-modal>إلغاء</button>
+        </div>
+
+      </form>
+
+      <!-- وثيقة -->
+
+      <form id="documentForm" class="form-grid" hidden>
+
+        <div class="field">
+          <label>اسم الوثيقة</label>
+          <input id="documentName" required>
+        </div>
+
+        <div class="field">
+          <label>رقم القضية</label>
+          <input id="documentCase">
+        </div>
+
+        <div class="field">
+          <label>نوع الوثيقة</label>
+          <select id="documentType">
+            <option>عقد</option>
+            <option>حكم</option>
+            <option>طلب</option>
+            <option>محضر</option>
+            <option>هوية</option>
+            <option>مراسلة</option>
+            <option>أخرى</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>التاريخ</label>
+          <input id="documentDate" type="date">
+        </div>
+
+        <div class="field full">
+          <label>الوصف</label>
+          <textarea id="documentDescription"></textarea>
+        </div>
+
+        <div class="form-actions">
+          <button class="btn btn-gold" type="submit">حفظ الوثيقة</button>
+          <button class="btn" type="button" data-close-modal>إلغاء</button>
+        </div>
+
+      </form>
+
+      <!-- محامٍ -->
+
+      <form id="lawyerForm" class="form-grid" hidden>
+
+        <div class="field">
+          <label>اسم المحامي</label>
+          <input id="lawyerName" required>
+        </div>
+
+        <div class="field">
+          <label>رقم الهاتف</label>
+          <input id="lawyerPhone" type="tel">
+        </div>
+
+        <div class="field">
+          <label>التخصص</label>
+          <input id="lawyerSpecialty">
+        </div>
+
+        <div class="field">
+          <label>رقم الاعتماد / التسجيل</label>
+          <input id="lawyerLicense">
+        </div>
+
+        <div class="field full">
+          <label>ملاحظات</label>
+          <textarea id="lawyerNotes"></textarea>
+        </div>
+
+        <div class="form-actions">
+          <button class="btn btn-gold" type="submit">حفظ المحامي</button>
+          <button class="btn" type="button" data-close-modal>إلغاء</button>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+</div>
 
 <script>
-document.addEventListener("DOMContentLoaded", function () {
+"use strict";
 
-    const dashboard = document.getElementById("appDashboard");
-    const message = document.getElementById("legalMessage");
-    const messageTitle = document.getElementById("messageTitle");
-    const messageText = document.getElementById("messageText");
+/* =========================================================
+   قاعدة البيانات المحلية
+========================================================= */
 
-    /* البحث عن الأزرار الموجودة حالياً */
-    const buttons = document.querySelectorAll("button, a");
+const STORAGE_KEY = "legal_arabic_template_v3";
 
-    buttons.forEach(function (button) {
+const defaultDB = {
+  cases: [],
+  memos: [],
+  appointments: [],
+  documents: [],
+  lawyers: []
+};
 
-        const text = button.textContent.trim();
+let db = loadDB();
 
-        /* زر ابدأ الآن */
-        if (text.includes("ابدأ الآن")) {
+function loadDB(){
+  try{
+    const saved = localStorage.getItem(STORAGE_KEY);
 
-            button.addEventListener("click", function (event) {
+    if(!saved){
+      return structuredClone(defaultDB);
+    }
 
-                event.preventDefault();
+    const parsed = JSON.parse(saved);
 
-                dashboard.classList.add("active");
+    return {
+      cases: Array.isArray(parsed.cases) ? parsed.cases : [],
+      memos: Array.isArray(parsed.memos) ? parsed.memos : [],
+      appointments: Array.isArray(parsed.appointments) ? parsed.appointments : [],
+      documents: Array.isArray(parsed.documents) ? parsed.documents : [],
+      lawyers: Array.isArray(parsed.lawyers) ? parsed.lawyers : []
+    };
 
-                setTimeout(function () {
-                    dashboard.scrollIntoView({
-                        behavior: "smooth",
-                        block: "start"
-                    });
-                }, 100);
+  }catch(error){
+    console.error(error);
+    return structuredClone(defaultDB);
+  }
+}
 
-            });
+function saveDB(){
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(db));
+  renderAll();
+}
 
-        }
+function uid(){
+  return Date.now().toString(36) + Math.random().toString(36).slice(2,8);
+}
 
+function today(){
+  const d = new Date();
+  const month = String(d.getMonth()+1).padStart(2,"0");
+  const day = String(d.getDate()).padStart(2,"0");
+  return `${d.getFullYear()}-${month}-${day}`;
+}
 
-        /* زر اكتشف الميزات */
-        if (text.includes("اكتشف الميزات")) {
+function escapeHTML(value){
+  return String(value ?? "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+}
 
-            button.addEventListener("click", function (event) {
+function statusBadge(status){
 
-                event.preventDefault();
+  const s = String(status || "");
 
-                const sections = document.querySelectorAll("section");
+  if(
+    s.includes("مفتوحة") ||
+    s.includes("قادم") ||
+    s.includes("تم")
+  ){
+    return `<span class="badge badge-green">${escapeHTML(s)}</span>`;
+  }
 
-                let target = null;
+  if(
+    s.includes("مغلقة") ||
+    s.includes("ملغى")
+  ){
+    return `<span class="badge badge-red">${escapeHTML(s)}</span>`;
+  }
 
-                sections.forEach(function (section) {
+  if(
+    s.includes("مؤجل") ||
+    s.includes("مؤجلة")
+  ){
+    return `<span class="badge badge-gold">${escapeHTML(s)}</span>`;
+  }
 
-                    if (
-                        section.textContent.includes("مميزات النظام") ||
-                        section.querySelector(".section-title")
-                    ) {
-                        if (!target) {
-                            target = section;
-                        }
-                    }
+  return `<span class="badge badge-blue">${escapeHTML(s)}</span>`;
+}
 
-                });
+/* =========================================================
+   التنقل بين الأقسام
+========================================================= */
 
-                if (target) {
+function openTab(id){
 
-                    target.scrollIntoView({
-                        behavior: "smooth",
-                        block: "start"
-                    });
+  document.querySelectorAll(".panel").forEach(panel=>{
+    panel.classList.remove("active");
+  });
 
-                }
+  document.querySelectorAll(".nav button").forEach(button=>{
+    button.classList.remove("active");
+  });
 
-            });
+  const panel = document.getElementById(id);
 
-        }
+  if(panel){
+    panel.classList.add("active");
+  }
 
-    });
+  const navButton = document.querySelector(`.nav button[data-tab="${id}"]`);
 
+  if(navButton){
+    navButton.classList.add("active");
+  }
 
-    /* العودة للرئيسية */
-    document.getElementById("backHome").addEventListener(
-        "click",
-        function () {
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+}
 
-            dashboard.classList.remove("active");
+document.querySelectorAll(".nav button").forEach(button=>{
+  button.addEventListener("click",()=>{
+    openTab(button.dataset.tab);
+  });
+});
 
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth"
-            });
+document.querySelectorAll("[data-quick]").forEach(button=>{
+  button.addEventListener("click",()=>{
+    openTab(button.dataset.quick);
+  });
+});
 
-        }
-    );
+/* =========================================================
+   النافذة
+========================================================= */
 
+const modal = document.getElementById("modal");
+const modalTitle = document.getElementById("modalTitle");
 
-    /* إغلاق الرسالة */
-    document.getElementById("closeMessage").addEventListener(
-        "click",
-        function () {
+function closeModal(){
+  modal.classList.remove("show");
 
-            message.classList.remove("active");
+  document.querySelectorAll("#modal form").forEach(form=>{
+    form.hidden = true;
+  });
+}
 
-        }
-    );
+document.getElementById("closeModal").addEventListener("click",closeModal);
 
+document.querySelectorAll("[data-close-modal]").forEach(button=>{
+  button.addEventListener("click",closeModal);
+});
 
-    /* إغلاق عند الضغط خارج النافذة */
-    message.addEventListener("click", function (event) {
+modal.addEventListener("click",event=>{
+  if(event.target === modal){
+    closeModal();
+  }
+});
 
-        if (event.target === message) {
-            message.classList.remove("active");
-        }
+document.addEventListener("keydown",event=>{
+  if(event.key === "Escape"){
+    closeModal();
+  }
+});
 
-    });
+function openAdd(type){
+
+  document.querySelectorAll("#modal form").forEach(form=>{
+    form.hidden = true;
+  });
+
+  const map = {
+    case:{
+      id:"caseForm",
+      title:"إضافة قضية جديدة"
+    },
+    memo:{
+      id:"memoForm",
+      title:"إضافة مذكرة قانونية"
+    },
+    appointment:{
+      id:"appointmentForm",
+      title:"إضافة موعد جديد"
+    },
+    document:{
+      id:"documentForm",
+      title:"إضافة وثيقة"
+    },
+    lawyer:{
+      id:"lawyerForm",
+      title:"إضافة محامٍ"
+    }
+  };
+
+  const item = map[type];
+
+  if(!item){
+    return;
+  }
+
+  modalTitle.textContent = item.title;
+
+  const form = document.getElementById(item.id);
+
+  form.hidden = false;
+
+  modal.classList.add("show");
+
+  setDefaultDates();
+
+  setTimeout(()=>{
+    const firstInput = form.querySelector("input,textarea,select");
+    if(firstInput){
+      firstInput.focus();
+    }
+  },100);
+}
+
+document.querySelectorAll("[data-open-add]").forEach(button=>{
+  button.addEventListener("click",()=>{
+    openAdd(button.dataset.openAdd);
+  });
+});
+
+function setDefaultDates(){
+
+  const dateIds = [
+    "caseDate",
+    "memoDate",
+    "appointmentDate",
+    "documentDate"
+  ];
+
+  dateIds.forEach(id=>{
+    const el = document.getElementById(id);
+
+    if(el && !el.value){
+      el.value = today();
+    }
+  });
+}
+
+/* =========================================================
+   القضايا
+========================================================= */
+
+document.getElementById("caseForm").addEventListener("submit",event=>{
+
+  event.preventDefault();
+
+  const item = {
+    id:uid(),
+    number:document.getElementById("caseNumber").value.trim(),
+    client:document.getElementById("caseClient").value.trim(),
+    court:document.getElementById("caseCourt").value.trim(),
+    type:document.getElementById("caseType").value,
+    status:document.getElementById("caseStatus").value,
+    date:document.getElementById("caseDate").value || today(),
+    notes:document.getElementById("caseNotes").value.trim()
+  };
+
+  if(!item.number || !item.client){
+    alert("أدخل رقم القضية واسم الموكل.");
+    return;
+  }
+
+  db.cases.unshift(item);
+
+  saveDB();
+
+  event.target.reset();
+
+  closeModal();
+
+  openTab("cases");
+});
+
+/* =========================================================
+   المذكرات
+========================================================= */
+
+document.getElementById("memoForm").addEventListener("submit",event=>{
+
+  event.preventDefault();
+
+  const item = {
+    id:uid(),
+    title:document.getElementById("memoTitle").value.trim(),
+    caseNumber:document.getElementById("memoCase").value.trim(),
+    date:document.getElementById("memoDate").value || today(),
+    type:document.getElementById("memoType").value,
+    content:document.getElementById("memoContent").value.trim()
+  };
+
+  if(!item.title || !item.content){
+    alert("أدخل عنوان المذكرة ومحتواها.");
+    return;
+  }
+
+  db.memos.unshift(item);
+
+  saveDB();
+
+  event.target.reset();
+
+  closeModal();
+
+  openTab("memos");
+});
+
+/* =========================================================
+   المواعيد
+========================================================= */
+
+document.getElementById("appointmentForm").addEventListener("submit",event=>{
+
+  event.preventDefault();
+
+  const item = {
+    id:uid(),
+    title:document.getElementById("appointmentTitle").value.trim(),
+    caseNumber:document.getElementById("appointmentCase").value.trim(),
+    date:document.getElementById("appointmentDate").value,
+    time:document.getElementById("appointmentTime").value,
+    place:document.getElementById("appointmentPlace").value.trim(),
+    status:document.getElementById("appointmentStatus").value,
+    notes:document.getElementById("appointmentNotes").value.trim()
+  };
+
+  if(!item.title || !item.date){
+    alert("أدخل عنوان الموعد والتاريخ.");
+    return;
+  }
+
+  db.appointments.push(item);
+
+  db.appointments.sort((a,b)=>{
+    return `${a.date} ${a.time}`.localeCompare(`${b.date} ${b.time}`);
+  });
+
+  saveDB();
+
+  event.target.reset();
+
+  closeModal();
+
+  openTab("appointments");
+});
+
+/* =========================================================
+   الوثائق
+========================================================= */
+
+document.getElementById("documentForm").addEventListener("submit",event=>{
+
+  event.preventDefault();
+
+  const item = {
+    id:uid(),
+    name:document.getElementById("documentName").value.trim(),
+    caseNumber:document.getElementById("documentCase").value.trim(),
+    type:document.getElementById("documentType").value,
+    date:document.getElementById("documentDate").value || today(),
+    description:document.getElementById("documentDescription").value.trim()
+  };
+
+  if(!item.name){
+    alert("أدخل اسم الوثيقة.");
+    return;
+  }
+
+  db.documents.unshift(item);
+
+  saveDB();
+
+  event.target.reset();
+
+  closeModal();
+
+  openTab("documents");
+});
+
+/* =========================================================
+   المحامون
+========================================================= */
+
+document.getElementById("lawyerForm").addEventListener("submit",event=>{
+
+  event.preventDefault();
+
+  const item = {
+    id:uid(),
+    name:document.getElementById("lawyerName").value.trim(),
+    phone:document.getElementById("lawyerPhone").value.trim(),
+    specialty:document.getElementById("lawyerSpecialty").value.trim(),
+    license:document.getElementById("lawyerLicense").value.trim(),
+    notes:document.getElementById("lawyerNotes").value.trim()
+  };
+
+  if(!item.name){
+    alert("أدخل اسم المحامي.");
+    return;
+  }
+
+  db.lawyers.unshift(item);
+
+  saveDB();
+
+  event.target.reset();
+
+  closeModal();
+
+  openTab("lawyers");
+});
+
+/* =========================================================
+   الحذف
+========================================================= */
+
+function removeItem(type,id){
+
+  const labels = {
+    cases:"القضية",
+    memos:"المذكرة",
+    appointments:"الموعد",
+    documents:"الوثيقة",
+    lawyers:"المحامي"
+  };
+
+  if(!confirm(`هل أنت متأكد من حذف ${labels[type] || "العنصر"}؟`)){
+    return;
+  }
+
+  db[type] = db[type].filter(item=>item.id !== id);
+
+  saveDB();
+}
+
+/* =========================================================
+   عرض القضايا
+========================================================= */
+
+function renderCases(){
+
+  const box = document.getElementById("casesTable");
+
+  const query =
+    document.getElementById("caseSearch").value
+      .trim()
+      .toLowerCase();
+
+  const rows = db.cases.filter(item=>{
+
+    const text = [
+      item.number,
+      item.client,
+      item.court,
+      item.type,
+      item.status
+    ].join(" ").toLowerCase();
+
+    return text.includes(query);
+
+  });
+
+  if(!rows.length){
+
+    box.innerHTML = `<div class="empty">لا توجد قضايا مسجلة.</div>`;
+
+    return;
+  }
+
+  box.innerHTML = `
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>رقم القضية</th>
+            <th>الموكل</th>
+            <th>المحكمة</th>
+            <th>النوع</th>
+            <th>الحالة</th>
+            <th>التاريخ</th>
+            <th class="no-print">إجراء</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${rows.map(item=>`
+            <tr>
+              <td><strong>${escapeHTML(item.number)}</strong></td>
+              <td>${escapeHTML(item.client)}</td>
+              <td>${escapeHTML(item.court || "-")}</td>
+              <td>${escapeHTML(item.type)}</td>
+              <td>${statusBadge(item.status)}</td>
+              <td>${escapeHTML(item.date)}</td>
+              <td class="no-print">
+                <button class="btn btn-danger" onclick="removeItem('cases','${item.id}')">
+                  حذف
+                </button>
+              </td>
+            </tr>
+          `).join("")}
+        </tbody>
+      </table>
+    </div>
+  `;
+}
+
+/* =========================================================
+   عرض المذكرات
+========================================================= */
+
+function renderMemos(){
+
+  const box = document.getElementById("memosTable");
+
+  const query =
+    document.getElementById("memoSearch").value
+      .trim()
+      .toLowerCase();
+
+  const rows = db.memos.filter(item=>{
+
+    const text = [
+      item.title,
+      item.caseNumber,
+      item.type,
+      item.content
+    ].join(" ").toLowerCase();
+
+    return text.includes(query);
+  });
+
+  if(!rows.length){
+
+    box.innerHTML = `<div class="empty">لا توجد مذكرات مسجلة.</div>`;
+
+    return;
+  }
+
+  box.innerHTML = `
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>العنوان</th>
+            <th>القضية</th>
+            <th>النوع</th>
+            <th>التاريخ</th>
+            <th>المحتوى</th>
+            <th class="no-print">إجراء</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          ${rows.map(item=>`
+            <tr>
+              <td><strong>${escapeHTML(item.title)}</strong></td>
+              <td>${escapeHTML(item.caseNumber || "-")}</td>
+              <td>${escapeHTML(item.type)}</td>
+              <td>${escapeHTML(item.date)}</td>
+              <td>${escapeHTML(item.content).slice(0,100)}${item.content.length>100?"...":""}</td>
+              <td class="no-print">
+                <button class="btn btn-danger" onclick="removeItem('memos','${item.id}')">
+                  حذف
+                </button>
+              </td>
+            </tr>
+          `).join("")}
+        </tbody>
+      </table>
+    </div>
+  `;
+}
+
+/* =========================================================
+   عرض المواعيد
+========================================================= */
+
+function renderAppointments(){
+
+  const box = document.getElementById("appointmentsTable");
+
+  const query =
+    document.getElementById("appointmentSearch").value
+      .trim()
+      .toLowerCase();
+
+  const rows = db.appointments.filter(item=>{
+
+    const text = [
+      item.title,
+      item.caseNumber,
+      item.place,
+      item.status,
+      item.notes
+    ].join(" ").toLowerCase();
+
+    return text.includes(query);
+  });
+
+  if(!rows.length){
+
+    box.innerHTML = `<div class="empty">لا توجد مواعيد مسجلة.</div>`;
+
+    return;
+  }
+
+  box.innerHTML = `
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>الموعد</th>
+            <th>القضية</th>
+            <th>التاريخ</th>
+            <th>الوقت</th>
+            <th>المكان</th>
+            <th>الحالة</th>
+            <th class="no-print">إجراء</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          ${rows.map(item=>`
+            <tr>
+              <td><strong>${escapeHTML(item.title)}</strong></td>
+              <td>${escapeHTML(item.caseNumber || "-")}</td>
+              <td>${escapeHTML(item.date)}</td>
+              <td>${escapeHTML(item.time || "-")}</td>
+              <td>${escapeHTML(item.place || "-")}</td>
+              <td>${statusBadge(item.status)}</td>
+              <td class="no-print">
+                <button class="btn btn-danger" onclick="removeItem('appointments','${item.id}')">
+                  حذف
+                </button>
+              </td>
+            </tr>
+          `).join("")}
+        </tbody>
+      </table>
+    </div>
+  `;
+}
+
+/* =========================================================
+   عرض الوثائق
+========================================================= */
+
+function renderDocuments(){
+
+  const box = document.getElementById("documentsTable");
+
+  const query =
+    document.getElementById("documentSearch").value
+      .trim()
+      .toLowerCase();
+
+  const rows = db.documents.filter(item=>{
+
+    const text = [
+      item.name,
+      item.caseNumber,
+      item.type,
+      item.description
+    ].join(" ").toLowerCase();
+
+    return text.includes(query);
+  });
+
+  if(!rows.length){
+
+    box.innerHTML = `<div class="empty">لا توجد وثائق مسجلة.</div>`;
+
+    return;
+  }
+
+  box.innerHTML = `
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>اسم الوثيقة</th>
+            <th>القضية</th>
+            <th>النوع</th>
+            <th>التاريخ</th>
+            <th>الوصف</th>
+            <th class="no-print">إجراء</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          ${rows.map(item=>`
+            <tr>
+              <td><strong>${escapeHTML(item.name)}</strong></td>
+              <td>${escapeHTML(item.caseNumber || "-")}</td>
+              <td>${escapeHTML(item.type)}</td>
+              <td>${escapeHTML(item.date)}</td>
+              <td>${escapeHTML(item.description || "-")}</td>
+              <td class="no-print">
+                <button class="btn btn-danger" onclick="removeItem('documents','${item.id}')">
+                  حذف
+                </button>
+              </td>
+            </tr>
+          `).join("")}
+        </tbody>
+      </table>
+    </div>
+  `;
+}
+
+/* =========================================================
+   عرض المحامين
+========================================================= */
+
+function renderLawyers(){
+
+  const box = document.getElementById("lawyersTable");
+
+  const query =
+    document.getElementById("lawyerSearch").value
+      .trim()
+      .toLowerCase();
+
+  const rows = db.lawyers.filter(item=>{
+
+    const text = [
+      item.name,
+      item.phone,
+      item.specialty,
+      item.license
+    ].join(" ").toLowerCase();
+
+    return text.includes(query);
+  });
+
+  if(!rows.length){
+
+    box.innerHTML = `<div class="empty">لا توجد بيانات محامين.</div>`;
+
+    return;
+  }
+
+  box.innerHTML = `
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>الاسم</th>
+            <th>الهاتف</th>
+            <th>التخصص</th>
+            <th>رقم التسجيل</th>
+            <th>ملاحظات</th>
+            <th class="no-print">إجراء</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          ${rows.map(item=>`
+            <tr>
+              <td><strong>${escapeHTML(item.name)}</strong></td>
+              <td>${escapeHTML(item.phone || "-")}</td>
+              <td>${escapeHTML(item.specialty || "-")}</td>
+              <td>${escapeHTML(item.license || "-")}</td>
+              <td>${escapeHTML(item.notes || "-")}</td>
+              <td class="no-print">
+                <button class="btn btn-danger" onclick="removeItem('lawyers','${item.id}')">
+                  حذف
+                </button>
+              </td>
+            </tr>
+          `).join("")}
+        </tbody>
+      </table>
+    </div>
+  `;
+}
+
+/* =========================================================
+   لوحة التحكم
+========================================================= */
+
+function renderDashboard(){
+
+  const openCases = db.cases.filter(item=>
+    item.status !== "مغلقة"
+  ).length;
+
+  const upcoming = db.appointments.filter(item=>
+    item.date >= today() &&
+    item.status !== "ملغى" &&
+    item.status !== "تم"
+  ).length;
+
+  document.getElementById("statCases").textContent =
+    db.cases.length;
+
+  document.getElementById("statOpen").textContent =
+    openCases;
+
+  document.getElementById("statAppointments").textContent =
+    upcoming;
+
+  document.getElementById("statDocuments").textContent =
+    db.documents.length;
+
+  const box = document.getElementById("dashboardCases");
+
+  const latest = db.cases.slice(0,5);
+
+  if(!latest.length){
+
+    box.innerHTML = `
+      <div class="empty">
+        لا توجد قضايا بعد.
+        <br>
+        اضغط «قضية جديدة» لإضافة أول قضية.
+      </div>
+    `;
+
+    return;
+  }
+
+  box.innerHTML = `
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>رقم القضية</th>
+            <th>الموكل</th>
+            <th>المحكمة</th>
+            <th>الحالة</th>
+            <th>التاريخ</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          ${latest.map(item=>`
+            <tr>
+              <td>${escapeHTML(item.number)}</td>
+              <td>${escapeHTML(item.client)}</td>
+              <td>${escapeHTML(item.court || "-")}</td>
+              <td>${statusBadge(item.status)}</td>
+              <td>${escapeHTML(item.date)}</td>
+            </tr>
+          `).join("")}
+        </tbody>
+      </table>
+    </div>
+  `;
+}
+
+/* =========================================================
+   البحث
+========================================================= */
+
+[
+  ["caseSearch",renderCases],
+  ["memoSearch",renderMemos],
+  ["appointmentSearch",renderAppointments],
+  ["documentSearch",renderDocuments],
+  ["lawyerSearch",renderLawyers]
+].forEach(([id,fn])=>{
+
+  document.getElementById(id).addEventListener("input",fn);
 
 });
 
+/* =========================================================
+   النسخة الاحتياطية
+========================================================= */
 
-/* عرض رسالة القسم */
-function showLegalMessage(sectionName) {
+document.getElementById("backupBtn").addEventListener("click",()=>{
 
-    const message = document.getElementById("legalMessage");
-    const title = document.getElementById("messageTitle");
-    const text = document.getElementById("messageText");
+  const data = JSON.stringify(db,null,2);
 
-    title.textContent = sectionName;
-
-    text.textContent =
-  sectionName === "إدارة القضايا"
-    ? "إدارة القضايا: هنا يمكنك تنظيم القضايا والملفات القانونية ومتابعة حالتها ومواعيدها."
-    : sectionName === "المذكرات القانونية"
-    ? "المذكرات القانونية: إنشاء وحفظ المذكرات والوثائق القانونية والرجوع إليها بسهولة."
-    : sectionName === "المواعيد"
-    ? "المواعيد: متابعة الجلسات والمواعيد المهمة مع تنبيهات لتفادي نسيان أي موعد."
-    : sectionName === "الوثائق"
-    ? "الوثائق: تنظيم المستندات القانونية وحفظها بطريقة سهلة ومنظمة."
-    : sectionName === "المحامون"
-    ? "المحامون: إدارة بيانات المحامين والملفات المرتبطة بكل محامٍ."
-    : "هذا القسم جاهز لإضافة الوظائف الحقيقية الخاصة بـ " + sectionName + ".";
-
-message.classList.add("active");
-  // ===== تحسينات المرحلة القادمة =====
-
-// إغلاق أي رسالة/نافذة عند الضغط على زر الإغلاق
-document.addEventListener("click", function (event) {
-  const closeButton = event.target.closest(
-    ".close, .close-btn, [data-close], .modal-close"
+  const blob = new Blob(
+    [data],
+    {type:"application/json;charset=utf-8"}
   );
 
-  if (closeButton) {
-    const modal = closeButton.closest(
-      ".modal, .message, .popup, .overlay"
-    );
+  const url = URL.createObjectURL(blob);
 
-    if (modal) {
-      modal.classList.remove("active");
-    }
-  }
+  const a = document.createElement("a");
+
+  a.href = url;
+
+  a.download =
+    "legal-arabic-backup-" +
+    today() +
+    ".json";
+
+  document.body.appendChild(a);
+
+  a.click();
+
+  a.remove();
+
+  setTimeout(()=>{
+    URL.revokeObjectURL(url);
+  },1000);
+
 });
 
-// إغلاق النوافذ عند الضغط خارجها
-document.addEventListener("click", function (event) {
-  if (
-    event.target.classList.contains("modal") ||
-    event.target.classList.contains("overlay")
-  ) {
-    event.target.classList.remove("active");
-  }
+/* =========================================================
+   الطباعة
+========================================================= */
+
+document.getElementById("printBtn").addEventListener("click",()=>{
+  window.print();
 });
 
-// زر Esc لإغلاق أي نافذة مفتوحة
-document.addEventListener("keydown", function (event) {
-  if (event.key === "Escape") {
-    document
-      .querySelectorAll(".active")
-      .forEach(function (element) {
-        if (
-          element.classList.contains("modal") ||
-          element.classList.contains("overlay") ||
-          element.classList.contains("message") ||
-          element.classList.contains("popup")
-        ) {
-          element.classList.remove("active");
-        }
-      });
-  }
+document.querySelectorAll("[data-print-section]").forEach(button=>{
+  button.addEventListener("click",()=>{
+    window.print();
+  });
 });
-  </script>
+
+/* =========================================================
+   تشغيل التطبيق
+========================================================= */
+
+function renderAll(){
+
+  renderDashboard();
+  renderCases();
+  renderMemos();
+  renderAppointments();
+  renderDocuments();
+  renderLawyers();
+
+}
+
+setDefaultDates();
+
+renderAll();
+
+console.log("Legal Arabic Template loaded successfully.");
+
+</script>
+
 </body>
-</html>
+  </html>
