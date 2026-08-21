@@ -99,7 +99,7 @@ button {
 
 /* Hero */
 .hero {
-  padding: 100px 0 80px;
+  padding: 65px 20px 55px;
   text-align: center;
   background:
     radial-gradient(circle at top, rgba(37, 99, 235, 0.25), transparent 45%);
@@ -208,3 +208,137 @@ footer {
     font-size: 28px;
   }
   }
+/* ================================
+   تحسين نهائي للموقع - Mobile
+   ================================ */
+
+.hero {
+    padding: 65px 20px 55px;
+}
+
+.hero h1 {
+    font-size: clamp(32px, 7vw, 58px);
+    line-height: 1.25;
+    margin-bottom: 18px;
+}
+
+.hero p {
+    max-width: 700px;
+    margin: 0 auto 28px;
+    font-size: 18px;
+    line-height: 1.9;
+}
+
+/* تحسين الأقسام */
+section {
+    padding: 65px 20px;
+}
+
+.section-title {
+    margin-bottom: 35px;
+}
+
+/* تحسين البطاقات */
+.card {
+    border-radius: 20px;
+    padding: 32px 25px;
+    margin-bottom: 25px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card h3 {
+    font-size: 25px;
+    line-height: 1.5;
+    margin-bottom: 15px;
+}
+
+.card p {
+    font-size: 17px;
+    line-height: 1.9;
+}
+
+/* أزرار الصفحة */
+button,
+.btn,
+a.btn {
+    border-radius: 14px;
+    min-height: 52px;
+}
+
+/* تحسين الهاتف */
+@media (max-width: 768px) {
+
+    .hero {
+        padding: 55px 18px 45px;
+    }
+
+    .hero h1 {
+        font-size: 34px;
+        line-height: 1.35;
+        margin-bottom: 16px;
+    }
+
+    .hero p {
+        font-size: 17px;
+        line-height: 1.9;
+        margin-bottom: 25px;
+    }
+
+    section {
+        padding: 55px 16px;
+    }
+
+    .section-title {
+        font-size: 32px;
+        line-height: 1.4;
+        margin-bottom: 30px;
+    }
+
+    .card {
+        padding: 28px 22px;
+        margin-bottom: 22px;
+        border-radius: 18px;
+    }
+
+    .card h3 {
+        font-size: 23px;
+        line-height: 1.5;
+    }
+
+    .card p {
+        font-size: 16px;
+        line-height: 1.9;
+    }
+}
+
+/* تحسين الشاشات الصغيرة جدًا */
+@media (max-width: 480px) {
+
+    .hero {
+        padding: 45px 15px 40px;
+    }
+
+    .hero h1 {
+        font-size: 30px;
+    }
+
+    .hero p {
+        font-size: 16px;
+    }
+
+    .section-title {
+        font-size: 29px;
+    }
+
+    .card {
+        padding: 25px 18px;
+    }
+
+    .card h3 {
+        font-size: 21px;
+    }
+
+    .card p {
+        font-size: 15px;
+    }
+}
