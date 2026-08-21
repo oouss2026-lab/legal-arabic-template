@@ -597,6 +597,52 @@ function showLegalMessage(sectionName) {
 
     message.classList.add("active");
 }
+  // ===== تحسينات المرحلة القادمة =====
+
+// إغلاق أي رسالة/نافذة عند الضغط على زر الإغلاق
+document.addEventListener("click", function (event) {
+  const closeButton = event.target.closest(
+    ".close, .close-btn, [data-close], .modal-close"
+  );
+
+  if (closeButton) {
+    const modal = closeButton.closest(
+      ".modal, .message, .popup, .overlay"
+    );
+
+    if (modal) {
+      modal.classList.remove("active");
+    }
+  }
+});
+
+// إغلاق النوافذ عند الضغط خارجها
+document.addEventListener("click", function (event) {
+  if (
+    event.target.classList.contains("modal") ||
+    event.target.classList.contains("overlay")
+  ) {
+    event.target.classList.remove("active");
+  }
+});
+
+// زر Esc لإغلاق أي نافذة مفتوحة
+document.addEventListener("keydown", function (event) {
+  if (event.key === "Escape") {
+    document
+      .querySelectorAll(".active")
+      .forEach(function (element) {
+        if (
+          element.classList.contains("modal") ||
+          element.classList.contains("overlay") ||
+          element.classList.contains("message") ||
+          element.classList.contains("popup")
+        ) {
+          element.classList.remove("active");
+        }
+      });
+  }
+});
   </script>
 </body>
 </html>
